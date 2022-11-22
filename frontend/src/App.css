@@ -85,7 +85,7 @@ body {
   font-size: 30px;
   margin-top: -80px;
   height: 40px;
-  color: green
+  color: rgb(16, 16, 16)
 }
 
 .card:hover {
@@ -99,4 +99,8 @@ body {
     /* On small screens, we are no longer using row direction but column */
     flex-direction: column;
   }
+}
+
+a:link {
+  text-decoration: none;
 }

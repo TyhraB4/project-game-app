@@ -1,11 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { Link } from "react-router-dom"
 function Home() {
     return (
         <>
         <h1 className="text-center text-success my-5">Welcome to the Arcade!</h1>
         <div class="cards-list">
-        
+
         <div class="card 1">
         <div class="card_image"> <img src="https://media3.giphy.com/media/12BJdh2M9SwciQ/200.webp?cid=ecf05e47wthokm9x506c8z5eyizrygb5j10sp72ai0bwpw8e&rid=200.webp&ct=g" /> </div>
         <div class="card_title">
@@ -13,6 +13,7 @@ function Home() {
         </div>
         </div>
 
+        <Link to={'/tictactoe'}>
         <div class="card 2">
         <div class="card_image">
             <img src="https://media2.giphy.com/media/ChzovjKPuEiYe8ePih/200w.webp?cid=ecf05e47v2hx8a4m9r635smi9rq2q1ctowk1l4qru927flz4&rid=200w.webp&ct=g" />
@@ -21,6 +22,7 @@ function Home() {
             <p>TicTacToe</p>
         </div>
         </div>
+        </Link>
 
         <div class="card 3">
         <div class="card_image">
