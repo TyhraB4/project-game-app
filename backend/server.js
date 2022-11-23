@@ -1,49 +1,26 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose')
-
-require('dotenv').config();
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
+var corsOptions = {
+  origin: "http://localhost:3000"
+};
 
-app.set('view-engine', 'ejs')
-app.use(express.urlencoded({ extended: false }))
+app.use(cors(corsOptions));
 
-const URI = process.env.ATLAS_URI;
-mongoose.connect(URI,
-    err => {
-      if(err) throw err;
-      console.log(`connected to MongoDB`)
-});
-const connection = mongoose.connection;
-connection.once('open', () => {
-  console.log("MongoDB database connection established successfully.")
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message:"Welcome to the Arcade." });
 });
 
-app.get('/', (req, res) => {
-  res.render('index.ejs', { name: 'Kyle'})
-})
-
-app.get('/login', (req, res) => {
-  res.render('login.ejs')
-})
-
-app.post('/login', (req, res) => {
-  
-})
-
-app.get('/register', (req, res) => {
-  res.render('register.ejs')
-})
-
-app.post('/register', (req, res) => {
-  req.body.name
-})
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// set port, listen for requests
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
