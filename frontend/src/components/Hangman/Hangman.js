@@ -1,19 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import Header from './components/Hangman/Header';
-import Figure from './components/Hangman/Figure';
-import WrongLetters from './components/Hangman/WrongLetters';
-import Word from './components/Hangman/Word';
-import Notification from './components/Hangman/Notification';
-import Popup from './components/Popup';
-import {showNotification as show} from './components/Hangman/helpers/helpers';
+import Header from './Header';
+import Figure from './Figure';
+import WrongLetters from './WrongLetters';
+import Word from './Word';
+import Notification from './Notification';
+import Popup from './Popup';
+import {showNotification as show} from './helpers/helpers';
 
 
-import './components/Hangman/Hangman.css';
+import './Hangman.css';
 
 const words = ['application', 'programming', 'interface', 'wizard', 'algorithm', 'burger', 'array', 'coding', 'camel', 'java',];
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 
-function App() {
+function Hangman() {
   const [playable, setPlayable] = useState(true);
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
@@ -69,4 +69,4 @@ function playAgain() {
     </>
   );
 }
-export default App;
+export default Hangman;

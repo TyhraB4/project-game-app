@@ -1,39 +1,38 @@
-import React, { useState } from "react";
-import "./App.css"
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Profile from "./pages/Profile";
-import TicTacToe from "./components/TicTacToe/TicTacToe"
-import NavBar from "./NavBar";
-import { Route, Routes} from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {Login} from "./components/Login"
-import {Register} from "./components/Register"
+import React from 'react';
+import './App.css';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+
+import About from './components/About';
+import Store from './components/store';
+import Games from './components/Games';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import TicTacToe from './components/TicTacToe/TicTacToe';
+import Hangman from './components/Hangman/Hangman';
+import Tetris from './components/Tetris/src/app.js';
+import Register from './components/Register';
+import Navigation from './Navigation'; 
+import CurrentUserProvider from './contexts/CurrentUser';
 
 function App() {
-  const [currentForm, setCurrentForm] = useState('login');
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  }
-
   return (
-      <>
-      <div className="loginform">
-        {
-          currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
-        }
-      </div>
-      <NavBar />
-      <div className="container">
+    <CurrentUserProvider>
+      <BrowserRouter>
+        <Navigation />
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/profile" element={<Profile/>} />
-          <Route path="/tictactoe" element={<TicTacToe/>} />
+          <Route path="/about" element={<About/>}></Route>
+          <Route path="/store" element={<Store/>}></Route>
+          <Route path="/games" element={<Games/>}></Route>
+          <Route path="/register" element={<Register/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/profile" element={<Profile/>}></Route>
+          <Route path="/tictactoe" element={<TicTacToe/>}></Route>
+          <Route path="/hangman" element={<Hangman/>}></Route>
+          <Route path="/tetris" element={<Tetris/>}></Route>
         </Routes>
-      </div>
-      </>
-  )
+      </BrowserRouter>
+  </CurrentUserProvider>  
+  );
 }
 
 export default App;
